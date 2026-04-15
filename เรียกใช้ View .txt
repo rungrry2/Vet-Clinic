@@ -1,0 +1,53 @@
+✅ 1. เรียกใช้ View (เหมือน SELECT ธรรมดา)
+🧾 รายงานบิล
+SELECT * FROM vw_BillReport;
+🩺 ประวัติการรักษา
+SELECT * FROM vw_MedicalHistory;
+💊 ยา + stock
+SELECT * FROM vw_MedicineStock;
+💡 ใช้แบบมีเงื่อนไขได้ (เหมือน table จริง)
+SELECT *
+FROM vw_MedicineStock
+WHERE available_stock < 10;
+
+👉 อันนี้เอาไปทำ “แจ้งเตือนของใกล้หมด” ได้เลย 🔥
+
+🚀 2. จุดเทพ: View Trigger (INSTEAD OF)
+
+👉 ตัวนี้ของคุณคือ สั่ง INSERT/UPDATE/DELETE ผ่าน View ได้
+
+✅ INSERT ผ่าน View
+INSERT INTO vw_BillReport (bill_id, record_id, payment_method_id, bill_date, total_amount)
+VALUES ('B999', 'R001', 'PM001', '2026-03-26', 500.00);
+
+👉 สิ่งที่เกิด:
+
+❌ ไม่ได้ insert ลง View
+✅ Trigger จะเอาไป insert ลง Bills แทน
+✅ UPDATE ผ่าน View
+UPDATE vw_BillReport
+SET total_amount = 800.00
+WHERE bill_id = 'B999';
+
+👉 Trigger จะไป update ใน Bills
+
+✅ DELETE ผ่าน View
+DELETE FROM vw_BillReport
+WHERE bill_id = 'B999';
+
+👉 Trigger จะลบใน Bills
+
+🔥 แนวคิดสำคัญ (อาจารย์ชอบมาก)
+
+👉 ปกติ:
+
+View = อ่านอย่างเดียว ❌
+
+👉 ของคุณ:
+
+View + INSTEAD OF Trigger = CRUD ได้ ✅
+🧠 สรุปภาพใหญ่
+สิ่งที่คุณทำ	ประโยชน์
+View	ซ่อน JOIN ซับซ้อน
+View Trigger	ทำให้ View เขียนข้อมูลได้
+รวมกัน	ทำเหมือน “Virtual Table”

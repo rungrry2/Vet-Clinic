@@ -1,0 +1,54 @@
+🔥 ตัวอย่างจากของคุณ
+🐾 1. เพิ่ม Owner
+EXEC sp_AddOwner 
+    'O001', 
+    'สมชาย', 
+    'ใจดี', 
+    '0999999999', 
+    'somchai@email.com', 
+    N'กรุงเทพ';
+🐕 2. เพิ่มสัตว์เลี้ยง
+EXEC sp_AddPet 
+    'P001',
+    'O001',
+    'SP001',
+    N'เจ้าดำ',
+    N'พันธุ์ไทย',
+    N'ผู้',
+    '2022-01-01',
+    12.50;
+📅 3. เพิ่มการนัดหมาย
+EXEC sp_AddAppointment
+    'A001',
+    'P001',
+    'V001',
+    'S001',
+    '2026-03-26',
+    '10:30',
+    N'ตรวจสุขภาพ';
+💊 4. เพิ่มยา
+EXEC sp_AddMedicine
+    'MED030',
+    'SUP001',
+    N'ยาบำรุงตับ',
+    N'ยา',
+    300.00;
+✅ เรียกดูข้อมูล (SELECT)
+Owners
+EXEC sp_GetOwners;
+Pets
+EXEC sp_GetPets;
+Appointments
+EXEC sp_GetAppointments;
+Medicines
+EXEC sp_GetMedicines;
+✅ UPDATE
+EXEC sp_UpdateOwner
+    'O001',
+    'สมชาย',
+    'ใจดีมาก',
+    '0888888888',
+    'new@email.com',
+    N'เชียงใหม่';
+✅ DELETE
+EXEC sp_DeleteOwner 'O001';
